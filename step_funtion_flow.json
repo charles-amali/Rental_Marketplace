@@ -1,0 +1,22 @@
+{
+    "Comment": "ETL Pipeline Orchestration",
+    "StartAt": "Extract Data - RDS to S3",
+    "States": {
+      "Extract Data - RDS to S3": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::glue:startJobRun.sync",
+        "Parameters": {
+          "JobName": "RDS_TO_S3_job"
+        },
+        "Next": "Load Data and Tranform - S3 to Redshift"
+      },
+      "Load Data and Tranform - S3 to Redshift": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::glue:startJobRun.sync",
+        "Parameters": {
+          "JobName": "glue_to_redshift_job"
+        },
+        "End": true
+      }
+    }
+  }
