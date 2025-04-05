@@ -154,7 +154,7 @@ The pipeline is automatically triggered on a schedule, but can be manually execu
 4. Submit pull request
 
 ## License
-[Your License Type]
+This project is licensed under the MIT License.
 
 ## Contact
-[Your Contact Information]
+For questions or feedback, please reach out to charlesadunkansah@gmail.com
