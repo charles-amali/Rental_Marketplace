@@ -5,7 +5,7 @@ This project implements an end-to-end data pipeline for a rental marketplace pla
 
 ## Architecture
 ### System Architecture
-<img src="images/Lab3_architecture.jpg" width="500">
+<img src="images/Lab3_architecture.jpg" width="600" align="center">
 
  *System architecture showing data flow from source systems through transformation layers to final consumption*
 - **Source**: AWS RDS MySQL (Application Database)
@@ -18,7 +18,7 @@ This project implements an end-to-end data pipeline for a rental marketplace pla
 
 ## Data Flow
 ### ETL Pipeline Flow
-<img src="images/step-function-flow.png" width="500">
+<img src="images/step-function-flow.png" width="600" align="center">
 
  *Step Functions workflow showing the detailed ETL process and state transitions*
 1. Extract: RDS MySQL → S3 (raw data)
