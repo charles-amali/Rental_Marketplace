@@ -80,6 +80,29 @@ try:
             continue  # Skip writing this dataset
     
     print(" All data loaded to Redshift!")
+
+    try:
+        print("Calling Redshift stored procedure...")
+
+        jdbc_url = "jdbc:redshift://sandbox.842676015206.eu-west-1.redshift-serverless.amazonaws.com:5439/dev"
+        dbtable = "CALL sp_etl_transform_pipeline()"
+
+        # Fetch credentials from Secrets Manager (Glue connection already handles this)
+        redshift_conn = glueContext.extract_jdbc_conf(redshift_connection)
+        username = redshift_conn['user']
+        password = redshift_conn['password']
+
+        spark._sc._jvm.java.lang.Class.forName("com.amazon.redshift.jdbc.Driver")
+        
+        connection = spark._sc._jvm.java.sql.DriverManager.getConnection(jdbc_url, username, password)
+        statement = connection.prepareCall(dbtable)
+        statement.execute()
+        connection.close()
+
+        print("Stored procedure executed successfully!")
+
+    except Exception as e:
+      print(f"Failed to call stored procedure: {e}")
     job.commit()
 
 except Exception as e:
